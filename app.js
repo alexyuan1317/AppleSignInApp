@@ -7,13 +7,13 @@ const app = express();
 const fs = require("fs");
 
 const private_key = fs.readFileSync("./appleSignIn_private_key.p8");
-const client_id = "com.nineyi.shop.s001993";
+const client_id = "bundleID";
 
 function generateClientSecret() {
   // Generate client secret
   let client_secret = jwt.sign(
     {
-      iss: "CGDF3735PK", // Team ID, should store in server side
+      iss: "TEAMID", // Team ID, should store in server side
       sub: client_id, // Bundle ID, should store in server side
       aud: "https://appleid.apple.com", // Fix value
       iat: Math.floor(Date.now() / 1000),
@@ -24,7 +24,7 @@ function generateClientSecret() {
       algorithm: "ES256",
       header: {
         alg: "ES256",
-        kid: "PCKF47G23B", // Key ID, should store in a safe place on server side
+        kid: "KEYID", // Key ID, should store in a safe place on server side
       },
     }
   );
